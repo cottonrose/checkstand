@@ -1,7 +1,7 @@
 package com.cottonrose;
 
 /**
- * Auther:secondriver
+ * Auther:cottonrose
  * Created: ${date}
  */
 

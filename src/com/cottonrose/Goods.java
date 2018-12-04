@@ -5,9 +5,11 @@ import java.util.Scanner;
 import java.time.LocalTime;
 
 /**
- * Auther:secondriver
+ * Auther:cottonrose
  * Created: ${date}
- */ //商品信息类
+ */
+
+//商品信息类
 class Goods{
     private int no; //商品货号
     private String name; //商品名称
