@@ -24,22 +24,22 @@ public class CheckStand {
             System.out.println("请选择您的操作：");
             String id = reader.nextLine();
             switch (id) {
-                case "S":
+                case "S":   //店主操作
                 case "s": {
                     owner();
                     continue;
                 }
-                case "C":
+                case "C":   //顾客操作
                 case "c": {
                     customer();
                     break;
                 }
-                case "A":
+                case "A":   //关于
                 case "a": {
                     abort();
                     break;
                 }
-                case "Q":
+                case "Q":  //退出系统
                 case "q": {
                     quitMenu();
                     condi = false;
@@ -76,11 +76,11 @@ public class CheckStand {
     public static Goods readGoods(){
 
         while(true){
-            String goods = reader.nextLine();
-            goods = goods.trim();
-            String[] goodInfo = goods.split(" ");
-            if(goodInfo!=null && goodInfo.length==6 || goodInfo.length==2){
-                if(goodInfo.length==6) {
+            String goods = reader.nextLine();  //读取一行信息存入到goods中
+            goods = goods.trim();  //将信息中的前后空格去掉
+            String[] goodInfo = goods.split(" ");  //以信息中空格为界限，将信息存入一个字符串数组中
+            if(goodInfo!=null && goodInfo.length==6 || goodInfo.length==2){ //当字符数组中有6个或2个元素时，执行以下代码
+                if(goodInfo.length==6) {  //创建一个商品类对象，内容是用户输入的商品信息
                     Goods good = new Goods(
                             Integer.parseInt(goodInfo[0]),
                             goodInfo[1],
@@ -90,7 +90,7 @@ public class CheckStand {
                             LocalDate.parse(goodInfo[5].subSequence(0,goodInfo[5].length())),
                             LocalDate.now()
                     );
-                    return good;
+                    return good; //返回该商品
                 }
                 if(goodInfo.length==2){
                     Goods good = new Goods(Integer.parseInt(goodInfo[0]),goodInfo[1]);
@@ -106,15 +106,15 @@ public class CheckStand {
     public static void owner() {
         boolean con = true;
         while (con){
-            ownerMenu();
-            int num = GoodsCenter.isToTime();
+            ownerMenu(); //打印店主操作菜单
+            int num = GoodsCenter.isToTime(); //判断商品是否到期
             if(num!=0){
                 System.out.printf("上架商品中出现过期商品共"+num+"件，请及时下架！\n");
             }
             System.out.println("请选择您的操作：");
             String op = reader.nextLine();
             switch (op) {
-                case "P":
+                case "P":  //商品上架
                 case "p": {
                     GoodsCenter.printGoods();
                     System.out.println("请输入上架商品信息：格式如下：(不用填写上架日期)");
@@ -124,7 +124,7 @@ public class CheckStand {
                     GoodsCenter.printGoods();
                     break;
                 }
-                case "D":
+                case "D":  //商品下架
                 case "d": {
                     GoodsCenter.printGoods();
                     System.out.println("请输入下架商品编号及商品名称：格式如下：");
@@ -134,7 +134,7 @@ public class CheckStand {
                     GoodsCenter.printGoods();
                     break;
                 }
-                case "M":
+                case "M":  //修改商品信息
                 case "m": {
                     GoodsCenter.printGoods();
                     System.out.println("请输入要修改的商品编号及商品名称：格式如下：");
@@ -144,7 +144,7 @@ public class CheckStand {
                     GoodsCenter.printGoods();
                     break;
                 }
-                case "Q":
+                case "Q":  //退出店主模块
                 case "q": {
                     con = false;
                     break;
@@ -180,12 +180,12 @@ public class CheckStand {
     //顾客操作
     public static void customer(){
         boolean con = true;
-        Order order = new Order();
+        Order order = new Order(); //创建一个订单对象，将顾客选购的商品放入该对象中
         while(con){
             Scanner input = new Scanner(System.in);
-            customerMenu();
+            customerMenu(); //打印顾客操作菜单
             switch (input.nextLine()){
-                case"A":
+                case"A":  //顾客选购商品
                 case"a":{
                     GoodsCenter.printGoods();
                     System.out.println("请选择要购买的商品：格式如下：");
@@ -206,12 +206,12 @@ public class CheckStand {
                     }
                     break;
                 }
-                case"S":
+                case"S":  //打印订单
                 case"s":{
                     order.printOrder();
                     break;
                 }
-                case"M":
+                case"M":  //修改商品订单
                 case"m":{
                     System.out.println("请选择需要修改的商品：格式如下：");
                     System.out.println("1 2 (商品编号 要减少的数量)");
@@ -231,7 +231,7 @@ public class CheckStand {
 
                     break;
                 }
-                case"Q":
+                case"Q": //退出顾客操作模块
                 case"q":{
                     con = false;
                     break;

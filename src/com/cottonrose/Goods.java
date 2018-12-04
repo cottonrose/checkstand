@@ -60,10 +60,12 @@ class Goods{
     }
 
     public LocalDate getProTime() {
+
         return this.proTime;
     }
 
     public LocalDate getToTime() {
+
         return this.toTime;
     }
 
@@ -78,7 +80,6 @@ class Goods{
     }
 
     public void setPrice(float price) {
-
 
         this.price = price;
     }
